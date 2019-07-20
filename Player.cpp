@@ -2,32 +2,43 @@
 
 Player::Player() : pos_x(0), pos_y(0)
 {
+	this->view_dir = 1.523; // player view direction
 }
 
-void Player::SetPosition(int x, int y)
+void Player::SetPosition(float x, float y)
 {
 	this->pos_x = x;
 	this->pos_y = y;
 }
 
-void Player::SetPositionX(int x)
+void Player::SetPositionX(float x)
 {
 	this->pos_x = x;
 }
 
-void Player::SetPositionY(int y)
+void Player::SetPositionY(float y)
 {
 	this->pos_y = y;
 }
 
-const int& Player::GetPositionX()
+const float& Player::GetPositionX()
 {
 	return this->pos_x;
 }
 
-const int& Player::GetPositionY()
+const float& Player::GetPositionY()
 {
 	return this->pos_y;
+}
+
+void Player::SetViewDir(float dir)
+{
+	this->view_dir = dir;
+}
+
+const float& Player::GetViewDir()
+{
+	return this->view_dir;
 }
 
 RGBAColor Player::GetColor()

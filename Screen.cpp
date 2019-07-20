@@ -14,6 +14,8 @@ Screen::Screen(int w, int h) : width(w), height(h)
 			this->pixels[index].a = 255;    //alpha
 		}
 	}
+
+	this->bgColor = RGBAColor((byte)0, (byte)0, (byte)0);
 }
 
 Screen::Screen(int w, int h, const RGBAColor& fillColor) : width(w), height(h)
@@ -30,6 +32,8 @@ Screen::Screen(int w, int h, const RGBAColor& fillColor) : width(w), height(h)
 			this->pixels[index].a = fillColor.a;
 		}
 	}
+
+	this->bgColor = RGBAColor(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
 }
 
 Screen::~Screen()
@@ -56,4 +60,15 @@ const int& Screen::GetHeight() const
 const RGBAColor* Screen::GetPixels() const
 {
 	return this->pixels;
+}
+
+void Screen::ClearScreen()
+{
+	for (int i = 0; i < this->width; i++) {
+		for (int j = 0; j < this->height; j++) {
+			int index = j * this->width + i;
+
+			this->pixels[index] = bgColor;
+		}
+	}
 }

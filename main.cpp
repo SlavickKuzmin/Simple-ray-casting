@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 	const char level_map[] = 
 		"0000222222220000"\
 		"1              0"\
-		"1      11111   0"\
+		"1     011111   0"\
 		"1     0        0"\
 		"0     0  1110000"\
 		"0     3        0"\
@@ -53,13 +53,13 @@ int main(int argc, char **argv)
 	map->SetLevelMap(level_map);
 
 	Player *player = new Player();
-	player->SetPosition(50, 50);
+	player->SetPosition(3.456, 2.345);
 
 	RayCaster caster(screen_width, screen_height);
 	caster.SetLevelMap(map);
 	caster.SetPlayer(player);
 
-	caster.Draw();
+	Time::TimeMeasure diff;
 
 	glewExperimental = true; // Needed in core profile
 	if (glewInit() != GLEW_OK) {
@@ -74,6 +74,22 @@ int main(int argc, char **argv)
 		// Clear the screen. It's not mentioned before Tutorial 02, but it can cause flickering, so it's there nonetheless.
 		glClearColor(0, 0,0,0);
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		{
+			caster.GetPlayer().SetViewDir(caster.GetPlayer().GetViewDir() + 0.05f);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		{
+			caster.GetPlayer().SetViewDir(caster.GetPlayer().GetViewDir() - 0.05f);
+		}
+
+		//diff.StartMeasure();
+
+		caster.GetScreen().ClearScreen();
+		caster.Draw();
+
+		//diff.StopMeasure();
 
 		glDrawPixels(screen_width, screen_height, GL_RGBA, GL_UNSIGNED_BYTE, caster.GetScreen().GetPixels());
 		

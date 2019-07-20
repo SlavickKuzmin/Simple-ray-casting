@@ -14,9 +14,11 @@ public:
 	const int& GetWidth() const;
 	const int& GetHeight() const;
 	const RGBAColor* GetPixels() const;
+	void ClearScreen();
 private:
 	int width;
 	int height;
 	RGBAColor* pixels;
+	RGBAColor bgColor;
 };
 

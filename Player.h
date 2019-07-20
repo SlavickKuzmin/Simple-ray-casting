@@ -6,15 +6,18 @@ class Player
 {
 public:
 	Player();
-	void SetPosition(int x, int y);
-	void SetPositionX(int x);
-	void SetPositionY(int y);
-	const int& GetPositionX();
-	const int& GetPositionY();
+	void SetPosition(float x, float y);
+	void SetPositionX(float x);
+	void SetPositionY(float y);
+	const float& GetPositionX();
+	const float& GetPositionY();
+	void SetViewDir(float dir);
+	const float& GetViewDir();
 	RGBAColor GetColor();
 	~Player();
 private:
-	int pos_x;
-	int pos_y;
+	float pos_x;
+	float pos_y;
+	float view_dir;
 };
 

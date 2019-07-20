@@ -12,9 +12,9 @@ public:
 	~RayCaster();
 	void SetLevelMap(LevelMap* map);
 	void SetPlayer(Player* player);
-	const Player& GetPlayer();
+	Player& GetPlayer();
 	void Draw() const;
-	const Screen& GetScreen() const;
+	Screen& GetScreen() const;
 	const int& GetWidth() const;
 	const int& GetHeight() const;
 private:
@@ -24,5 +24,10 @@ private:
 	Player* player;
 	int width;
 	int height;
+	float fov;
+	inline void cast_ray(float angle) const;
+	int rect_w;
+	int rect_h;
+	RGBAColor ray_color;
 };
 
