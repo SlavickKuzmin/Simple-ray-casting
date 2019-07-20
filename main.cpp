@@ -8,10 +8,11 @@
 
 #include "Color.h"
 #include "TimeMeasure.h"
-#include "Screen.h"
+#include "RayCaster.h"
+#include "LevelMap.h"
 
-const int screen_width = 800;
-const int screen_height = 500;
+const int screen_width = 512;
+const int screen_height = 512;
 
 void initGLEW();
 
@@ -31,7 +32,34 @@ int main(int argc, char **argv)
 
 	glfwMakeContextCurrent(window);
 
-	Screen screen(screen_width, screen_height);
+	LevelMap *map = new LevelMap(16, 16);
+	const char level_map[] = 
+		"0000222222220000"\
+		"1              0"\
+		"1      11111   0"\
+		"1     0        0"\
+		"0     0  1110000"\
+		"0     3        0"\
+		"0   10000      0"\
+		"0   0   11100  0"\
+		"0   0   0      0"\
+		"0   0   1  00000"\
+		"0       1      0"\
+		"2       1      0"\
+		"0       0      0"\
+		"0 0000000      0"\
+		"0              0"\
+		"0002222222200000";
+	map->SetLevelMap(level_map);
+
+	Player *player = new Player();
+	player->SetPosition(50, 50);
+
+	RayCaster caster(screen_width, screen_height);
+	caster.SetLevelMap(map);
+	caster.SetPlayer(player);
+
+	caster.Draw();
 
 	glewExperimental = true; // Needed in core profile
 	if (glewInit() != GLEW_OK) {
@@ -47,7 +75,7 @@ int main(int argc, char **argv)
 		glClearColor(0, 0,0,0);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glDrawPixels(screen_width, screen_height, GL_RGBA, GL_UNSIGNED_BYTE, screen.GetScreen());
+		glDrawPixels(screen_width, screen_height, GL_RGBA, GL_UNSIGNED_BYTE, caster.GetScreen().GetPixels());
 		
 		// Swap buffers
 		glfwSwapBuffers(window);
@@ -56,6 +84,9 @@ int main(int argc, char **argv)
 	} // Check if the ESC key was pressed or the window was closed
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(window) == 0);
+
+	delete map;
+	delete player;
 
 	return 0;
 }

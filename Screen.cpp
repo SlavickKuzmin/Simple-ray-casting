@@ -53,7 +53,7 @@ const int& Screen::GetHeight() const
 	return this->height;
 }
 
-const RGBAColor* Screen::GetScreen() const
+const RGBAColor* Screen::GetPixels() const
 {
 	return this->pixels;
 }

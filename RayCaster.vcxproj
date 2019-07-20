@@ -134,13 +134,21 @@ copy E:\Voxels\ThirdParty\GLEW\glew-2.1.0-win32\glew-2.1.0\bin\Release\Win32\gle
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Drawing.cpp" />
+    <ClCompile Include="LevelMap.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RayCaster.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="TimeMeasure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Drawing.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="LevelMap.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RayCaster.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="TimeMeasure.h" />
   </ItemGroup>

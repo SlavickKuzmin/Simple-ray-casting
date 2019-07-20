@@ -13,7 +13,7 @@ public:
 	void SetPixel(int x, int y, const RGBAColor& color) const;
 	const int& GetWidth() const;
 	const int& GetHeight() const;
-	const RGBAColor* GetScreen() const;
+	const RGBAColor* GetPixels() const;
 private:
 	int width;
 	int height;
