@@ -4,14 +4,15 @@
 #include <gl/glew.h>
 #include <GL/GL.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
 
 #include "Color.h"
 #include "TimeMeasure.h"
 #include "RayCaster.h"
 #include "LevelMap.h"
+#include "Viewport.h"
+#include "TextureAtlas.h"
 
-const int screen_width = 512;
+const int screen_width = 1024;
 const int screen_height = 512;
 
 void initGLEW();
@@ -32,7 +33,9 @@ int main(int argc, char **argv)
 
 	glfwMakeContextCurrent(window);
 
-	LevelMap *map = new LevelMap(16, 16);
+	TextureAtlas texAtl("E:\\Voxels\\RayCasting\\git\\Simple-ray-casting\\images\\texture.png");
+
+	LevelMap *map = new LevelMap(16, 16, &texAtl);
 	const char level_map[] = 
 		"0000222222220000"\
 		"1              0"\
@@ -55,7 +58,12 @@ int main(int argc, char **argv)
 	Player *player = new Player();
 	player->SetPosition(3.456, 2.345);
 
-	RayCaster caster(screen_width, screen_height);
+	Screen* scr = new Screen(screen_width, screen_height);
+
+	Viewport* left_view = new Viewport(scr, 0, 0, 512, 512);
+	Viewport* right_view = new Viewport(scr, 512, 0, 1024, 512);
+
+	RayCaster caster(screen_width, screen_height, left_view, right_view);
 	caster.SetLevelMap(map);
 	caster.SetPlayer(player);
 
@@ -70,6 +78,9 @@ int main(int argc, char **argv)
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
+	float moveSpeed = 0.05f;
+	float rotationSpeed = 0.05f;
+
 	do {
 		// Clear the screen. It's not mentioned before Tutorial 02, but it can cause flickering, so it's there nonetheless.
 		glClearColor(0, 0,0,0);
@@ -77,21 +88,36 @@ int main(int argc, char **argv)
 
 		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 		{
-			caster.GetPlayer().SetViewDir(caster.GetPlayer().GetViewDir() + 0.05f);
+			caster.GetPlayer()->SetViewDir(caster.GetPlayer()->GetViewDir() + rotationSpeed);
 		}
 		else if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		{
-			caster.GetPlayer().SetViewDir(caster.GetPlayer().GetViewDir() - 0.05f);
+			caster.GetPlayer()->SetViewDir(caster.GetPlayer()->GetViewDir() - rotationSpeed);
 		}
-
+		else if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			caster.GetPlayer()->SetPositionY(caster.GetPlayer()->GetPositionY() + moveSpeed);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		{
+			caster.GetPlayer()->SetPositionY(caster.GetPlayer()->GetPositionY() - moveSpeed);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			caster.GetPlayer()->SetPositionX(caster.GetPlayer()->GetPositionX() - moveSpeed);
+		}
+		else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			caster.GetPlayer()->SetPositionX(caster.GetPlayer()->GetPositionX() + moveSpeed);
+		}
 		//diff.StartMeasure();
 
-		caster.GetScreen().ClearScreen();
+		scr->ClearScreen();
 		caster.Draw();
 
 		//diff.StopMeasure();
 
-		glDrawPixels(screen_width, screen_height, GL_RGBA, GL_UNSIGNED_BYTE, caster.GetScreen().GetPixels());
+		glDrawPixels(screen_width, screen_height, GL_RGBA, GL_UNSIGNED_BYTE, scr->GetPixels());
 		
 		// Swap buffers
 		glfwSwapBuffers(window);
@@ -103,6 +129,9 @@ int main(int argc, char **argv)
 
 	delete map;
 	delete player;
+	delete scr;
+	delete left_view;
+	delete right_view;
 
 	return 0;
 }

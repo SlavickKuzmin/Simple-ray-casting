@@ -12,7 +12,7 @@ public:
 	const float& GetPositionX();
 	const float& GetPositionY();
 	void SetViewDir(float dir);
-	const float& GetViewDir();
+	const float& GetViewDir() const;
 	RGBAColor GetColor();
 	~Player();
 private:

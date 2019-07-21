@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Drawing.cpp" />
+    <ClCompile Include="LevelMap.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RayCaster.cpp" />
+    <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="TimeMeasure.cpp" />
+    <ClCompile Include="TextureAtlas.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="Drawing.h" />
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="LevelMap.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RayCaster.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="TimeMeasure.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TextureAtlas.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="images">
+      <UniqueIdentifier>{960dd79f-2fb3-4622-96cf-fd284d2402c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

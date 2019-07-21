@@ -15,7 +15,7 @@ Screen::Screen(int w, int h) : width(w), height(h)
 		}
 	}
 
-	this->bgColor = RGBAColor((byte)0, (byte)0, (byte)0);
+	this->bgColor = RGBAColor((byte)255, (byte)255, (byte)255);
 }
 
 Screen::Screen(int w, int h, const RGBAColor& fillColor) : width(w), height(h)
@@ -44,7 +44,8 @@ Screen::~Screen()
 void Screen::SetPixel(int x, int y, const RGBAColor& color) const
 {
 	unsigned int index = y * this->width + x;
-	this->pixels[index] = color;
+	if(index <= width*height)
+		this->pixels[index] = color;
 }
 
 const int& Screen::GetWidth() const
@@ -57,13 +58,19 @@ const int& Screen::GetHeight() const
 	return this->height;
 }
 
-const RGBAColor* Screen::GetPixels() const
+RGBAColor* Screen::GetPixels()
 {
 	return this->pixels;
 }
 
+const RGBAColor& Screen::GetBgColor()
+{
+	return this->bgColor;
+}
+
 void Screen::ClearScreen()
 {
+#pragma omp parallel for
 	for (int i = 0; i < this->width; i++) {
 		for (int j = 0; j < this->height; j++) {
 			int index = j * this->width + i;

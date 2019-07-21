@@ -1,8 +1,9 @@
 #include "Player.h"
+#include <corecrt_math_defines.h>
 
 Player::Player() : pos_x(0), pos_y(0)
 {
-	this->view_dir = 1.523; // player view direction
+	this->view_dir = 2 * M_PI / 360; // player view direction
 }
 
 void Player::SetPosition(float x, float y)
@@ -36,7 +37,7 @@ void Player::SetViewDir(float dir)
 	this->view_dir = dir;
 }
 
-const float& Player::GetViewDir()
+const float& Player::GetViewDir() const
 {
 	return this->view_dir;
 }

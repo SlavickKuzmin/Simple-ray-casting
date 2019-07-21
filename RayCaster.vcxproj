@@ -140,7 +140,9 @@ copy E:\Voxels\ThirdParty\GLEW\glew-2.1.0-win32\glew-2.1.0\bin\Release\Win32\gle
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RayCaster.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="TextureAtlas.cpp" />
     <ClCompile Include="TimeMeasure.cpp" />
+    <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
@@ -150,7 +152,10 @@ copy E:\Voxels\ThirdParty\GLEW\glew-2.1.0-win32\glew-2.1.0\bin\Release\Win32\gle
     <ClInclude Include="Player.h" />
     <ClInclude Include="RayCaster.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TextureAtlas.h" />
     <ClInclude Include="TimeMeasure.h" />
+    <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,7 +4,7 @@
 
 struct Drawing
 {
-	static void draw_rectangle(Screen *scr, const int& x, const int& y, 
+	static void draw_rectangle(Viewport*scr, const int& x, const int& y,
 		const int& w, const int& h, const RGBAColor& color);
 
 

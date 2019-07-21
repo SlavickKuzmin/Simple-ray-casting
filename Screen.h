@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Color.h"
+#include "Viewport.h"
 
 class Screen
 {
@@ -13,7 +14,8 @@ public:
 	void SetPixel(int x, int y, const RGBAColor& color) const;
 	const int& GetWidth() const;
 	const int& GetHeight() const;
-	const RGBAColor* GetPixels() const;
+	RGBAColor* GetPixels();
+	const RGBAColor& GetBgColor();
 	void ClearScreen();
 private:
 	int width;
