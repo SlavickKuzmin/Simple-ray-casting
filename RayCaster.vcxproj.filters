@@ -10,6 +10,8 @@
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="TimeMeasure.cpp" />
     <ClCompile Include="TextureAtlas.cpp" />
+    <ClCompile Include="Viewport.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
@@ -22,6 +24,8 @@
     <ClInclude Include="TimeMeasure.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="TextureAtlas.h" />
+    <ClInclude Include="Viewport.h" />
+    <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="images">

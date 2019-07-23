@@ -1,6 +1,7 @@
 #include "LevelMap.h"
 
-LevelMap::LevelMap(int map_width, int map_height, TextureAtlas *atlas) : width(map_width), height(map_height), atlas(atlas)
+LevelMap::LevelMap(int map_width, int map_height, TextureAtlas *atlas, TextureAtlas* monsters) 
+	: width(map_width), height(map_height), atlas(atlas), monsters(monsters)
 {
 	const size_t ncolors = 5;
 	colors.reserve(ncolors);
@@ -41,6 +42,11 @@ const int& LevelMap::GetMapHeight() const
 TextureAtlas* LevelMap::GetTextureAtlas() const
 {
 	return this->atlas;
+}
+
+TextureAtlas* LevelMap::GetMonsterAtlas() const
+{
+	return monsters;
 }
 
 const RGBAColor& LevelMap::GetColorForBlock(int i)

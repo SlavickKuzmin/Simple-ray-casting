@@ -35,7 +35,9 @@ int main(int argc, char **argv)
 
 	TextureAtlas texAtl("E:\\Voxels\\RayCasting\\git\\Simple-ray-casting\\images\\texture.png");
 
-	LevelMap *map = new LevelMap(16, 16, &texAtl);
+	TextureAtlas monstrAtl("E:\\Voxels\\RayCasting\\git\\Simple-ray-casting\\images\\monsters.png");
+
+	LevelMap *map = new LevelMap(16, 16, &texAtl, &monstrAtl);
 	const char level_map[] = 
 		"0000222222220000"\
 		"1              0"\
@@ -54,6 +56,10 @@ int main(int argc, char **argv)
 		"0              0"\
 		"0002222222200000";
 	map->SetLevelMap(level_map);
+
+	map->sprites.push_back(Sprite(1.834, 8.765, 0));
+	map->sprites.push_back(Sprite(5.323, 5.365, 1));
+	map->sprites.push_back(Sprite(4.123, 10.265, 1));
 
 	Player *player = new Player();
 	player->SetPosition(3.456, 2.345);

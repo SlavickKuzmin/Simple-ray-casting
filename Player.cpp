@@ -37,7 +37,7 @@ void Player::SetViewDir(float dir)
 	this->view_dir = dir;
 }
 
-const float& Player::GetViewDir() const
+const float& Player::GetViewDir() const 
 {
 	return this->view_dir;
 }

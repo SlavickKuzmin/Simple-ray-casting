@@ -76,8 +76,16 @@ void RayCaster::DrawLevelMap() const
 		}
 	}
 
-	Drawing::draw_rectangle(this->left_view, this->player->GetPositionX()*rect_w, this->player->GetPositionY()*rect_h,
-		5, 5, this->player->GetColor());
+	//Drawing::draw_rectangle(this->left_view, this->player->GetPositionX()*rect_w, this->player->GetPositionY()*rect_h,
+	//	5, 5, this->player->GetColor());
+
+	for (int i = 0; i < this->levelMap->sprites.size(); i++)
+	{
+		Drawing::draw_rectangle(this->left_view, this->levelMap->sprites[i].GetX() * rect_w, 
+			this->levelMap->sprites[i].GetY() * rect_h,
+			5, 5, this->player->GetColor());
+		Drawing::draw_sprite(this->levelMap->sprites[i], this->right_view, this->GetPlayer(), this->levelMap->GetMonsterAtlas());
+	}
 }
 
 void RayCaster::cast_ray(float angle, int& i) const
